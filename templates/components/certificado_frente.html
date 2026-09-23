@@ -1,0 +1,80 @@
+{% raw %}
+<div class="certificate-sheet tema-ouro_azul orientacao-retrato" id="certificateSheet">
+
+          <!-- Borda Ornamental Dupla -->
+          <div class="cert-outer-border">
+            <div class="cert-inner-border">
+
+              <!-- Cantoneiras Decorativas -->
+              <div class="cert-corner top-left"></div>
+              <div class="cert-corner top-right"></div>
+              <div class="cert-corner bottom-left"></div>
+              <div class="cert-corner bottom-right"></div>
+
+              <!-- Conteúdo Interno do Certificado -->
+              <div class="cert-content">
+
+                <!-- Cabeçalho com Logotipos Balanceados (Prestadora à Esquerda, Contratante à Direita) -->
+                <div class="cert-header-layout">
+                  <!-- Slot Logo Esquerda (Prestadora) -->
+                  <div class="cert-header-logo-slot slot-left">
+                    <img id="previewCertLogoPrestadora" class="cert-slot-logo" src="" alt="Logo Prestadora" style="display:none;">
+                  </div>
+
+                  <!-- Centro: Nome da Instituição / Entidade Emissora -->
+                  <div class="cert-header-center">
+                    <div class="cert-header" id="previewInstituicao">
+                      CENTRO DE DESENVOLVIMENTO &amp; CAPACITAÇÃO PROFISSIONAL
+                    </div>
+                  </div>
+
+                  <!-- Slot Logo Direita (Contratante) -->
+                  <div class="cert-header-logo-slot slot-right">
+                    <img id="previewCertLogoContratante" class="cert-slot-logo" src="" alt="Logo Contratante" style="display:none;">
+                  </div>
+                </div>
+
+                <!-- Título -->
+                <h1 class="cert-title" id="previewTitulo">CERTIFICADO</h1>
+
+                <!-- Subtítulo -->
+                <div class="cert-subtitle" id="previewSubtitulo">DE CONCLUSÃO E PARTICIPAÇÃO</div>
+
+                <!-- Divisor Ornamental -->
+                <div class="cert-divider">
+                  <span class="divider-line"></span>
+                  <span class="divider-symbol">♦  ❖  ♦</span>
+                  <span class="divider-line"></span>
+                </div>
+
+                <!-- Texto do Corpo com Variáveis -->
+                <div class="cert-body" id="previewCorpo">
+                  Certificamos para os devidos fins que <span class="var-tag">{{NOME}}</span>, inscrito(a) sob o CPF nº <span class="var-tag">{{CPF}}</span>, concluiu com êxito o curso de <span class="var-tag">{{CURSO}}</span>, realizado em <span class="var-tag">{{DATA}}</span>, com aproveitamento satisfatório e carga horária total de <span class="var-tag">{{CARGA_HORARIA}}</span>.
+                </div>
+
+                <!-- Assinaturas -->
+                <div class="cert-signatures">
+                  <div class="signature-block">
+                    <div class="signature-line"></div>
+                    <div class="signature-name" id="previewAss1Nome">Prof. Coordenador(a)</div>
+                    <div class="signature-role" id="previewAss1Cargo">Coordenação Pedagógica</div>
+                  </div>
+                  <div class="signature-block">
+                    <div class="signature-line"></div>
+                    <div class="signature-name" id="previewAss2Nome">Diretoria Acadêmica</div>
+                    <div class="signature-role" id="previewAss2Cargo">Direção Geral</div>
+                  </div>
+                </div>
+
+                <!-- Rodapé -->
+                <div class="cert-footer" id="previewFooter">
+                  Registro de Certificado Digital • Válido em todo território nacional
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+{% endraw %}

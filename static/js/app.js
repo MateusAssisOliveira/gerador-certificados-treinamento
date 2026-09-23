@@ -125,23 +125,9 @@ function initThemeToggle() {
 // 1. Gerenciamento das Abas
 // ---------------------------------------------------------------------------
 function initTabs() {
-  const tabButtons = document.querySelectorAll(".tab-btn");
-  const tabPanes = document.querySelectorAll(".tab-pane");
-
-  tabButtons.forEach(btn => {
-    btn.addEventListener("click", () => {
-      tabButtons.forEach(b => b.classList.remove("active"));
-      tabPanes.forEach(p => p.classList.remove("active"));
-
-      btn.classList.add("active");
-      const target = btn.getAttribute("data-tab");
-      const targetPane = document.getElementById(target);
-      if (targetPane) {
-        targetPane.classList.add("active");
-        state.activeTab = target;
-      }
-      atualizarResumoGeracao();
-    });
+  document.addEventListener("workspace:stepchange", event => {
+    state.activeTab = event.detail.target;
+    atualizarResumoGeracao();
   });
 }
 

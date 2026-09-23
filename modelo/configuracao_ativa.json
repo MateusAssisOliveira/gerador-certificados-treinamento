@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "savedAt": "2026-09-22T19:04:43.325Z",
+  "savedAt": "2026-09-23T00:00:26.683Z",
   "front": {
     "instituicao": "INSTITUTO DE EDUCAÇÃO & TECNOLOGIA",
     "titulo": "CERTIFICADO",
@@ -26,7 +26,7 @@
     "verso_assinatura_cargo": "Responsável Técnico(a) - Reg. Profissional 8942-SP"
   },
   "style": {
-    "tema": "ouro_azul",
+    "tema": "esmeralda",
     "orientacao": "paisagem"
   },
   "table": {

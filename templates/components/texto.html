@@ -1,0 +1,105 @@
+{% raw %}
+<div class="section-card">
+            <div class="card-header">
+              <h2>Personalize seu certificado</h2>
+              <p>Escolha um modelo e edite os textos. Confira o resultado na prévia ao lado.</p>
+            </div>
+
+            <!-- Textos Principais -->
+            <div class="form-group mt-4">
+              <label for="inputInstituicao">Nome da Instituição ou Empresa</label>
+              <input type="text" id="inputInstituicao" class="form-input" value="CENTRO DE DESENVOLVIMENTO &amp; CAPACITAÇÃO PROFISSIONAL" placeholder="Ex: Instituto de Educação e Tecnologia">
+            </div>
+
+            <div class="form-row">
+              <div class="form-group flex-2">
+                <label for="inputTitulo">Título do Certificado</label>
+                <input type="text" id="inputTitulo" class="form-input" value="CERTIFICADO">
+              </div>
+              <div class="form-group flex-1">
+                <label>Modelos Rápidos</label>
+                <select id="selectPresetsTitulo" class="form-select">
+                  <option value="CERTIFICADO">Conclusão de Curso</option>
+                  <option value="CERTIFICADO DE PARTICIPAÇÃO">Participação em Evento</option>
+                  <option value="HONRA AO MÉRITO">Honra ao Mérito</option>
+                  <option value="CERTIFICADO DE RECONHECIMENTO">Reconhecimento</option>
+                  <option value="DECLARAÇÃO">Declaração</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="inputSubtitulo">Subtítulo</label>
+              <input type="text" id="inputSubtitulo" class="form-input" value="DE CONCLUSÃO E PARTICIPAÇÃO" placeholder="Ex: De conclusão com aproveitamento">
+            </div>
+
+            <!-- Toolbar de Variáveis -->
+            <div class="variables-toolbar-container">
+              <div class="toolbar-header">
+                <label>Variáveis Dinâmicas (Clique para inserir no texto)</label>
+                <span class="toolbar-hint">Formato {{TAG}}</span>
+              </div>
+              <div class="variables-toolbar" id="variablesToolbar">
+                <button type="button" class="tag-chip" data-tag="{{NOME}}" title="Insere o nome completo do participante">+ {{NOME}}</button>
+                <button type="button" class="tag-chip" data-tag="{{CPF}}" title="Insere o CPF do participante">+ {{CPF}}</button>
+                <button type="button" class="tag-chip" data-tag="{{CURSO}}" title="Insere o nome do curso">+ {{CURSO}}</button>
+                <button type="button" class="tag-chip" data-tag="{{DATA}}" title="Insere a data de conclusão">+ {{DATA}}</button>
+                <button type="button" class="tag-chip" data-tag="{{CARGA_HORARIA}}" title="Insere a carga horária">+ {{CARGA_HORARIA}}</button>
+                <button type="button" class="tag-chip" data-tag="{{CIDADE}}" title="Insere a cidade">+ {{CIDADE}}</button>
+                <button type="button" class="tag-chip tag-add" id="btnNovaVariavel">+ Nova Tag...</button>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="label-with-counter">
+                <label for="textareaTextoCorpo">Texto Principal do Certificado</label>
+                <span class="detected-tags-badge" id="detectedTagsCount">5 tags ativas</span>
+              </div>
+              <textarea id="textareaTextoCorpo" class="form-textarea" rows="4">Certificamos para os devidos fins que {{NOME}}, inscrito(a) sob o CPF nº {{CPF}}, concluiu com êxito o curso de {{CURSO}}, realizado em {{DATA}}, com aproveitamento satisfatório e carga horária total de {{CARGA_HORARIA}}.</textarea>
+              <span class="input-helper">Dica: Qualquer palavra dentro de <code>{{CHAVE}}</code> é substituída pelos dados da planilha ou tabela!</span>
+            </div>
+
+            <!-- Seção de Assinaturas da Frente com Cards Organizados -->
+            <div class="card-subheader mt-3">
+              <h3>Assinaturas da Folha da Frente</h3>
+              <p>Configure os dados dos dois signatários que assinam o certificado (Lado Esquerdo e Lado Direito).</p>
+            </div>
+
+            <div class="signers-grid">
+              <div class="signer-card">
+                <div class="signer-card-header">
+                  <h4>Signatário 1 (Profissional)</h4>
+                  <span class="signer-badge left">Lado Esquerdo</span>
+                </div>
+                <div class="form-group">
+                  <label for="inputAss1Nome">Nome Completo</label>
+                  <input type="text" id="inputAss1Nome" class="form-input" value="Prof. Coordenador(a)">
+                </div>
+                <div class="form-group">
+                  <label for="inputAss1Cargo">Cargo ou Função</label>
+                  <input type="text" id="inputAss1Cargo" class="form-input" value="Coordenação Pedagógica" placeholder="Ex: Instrutor(a) Credenciado(a)">
+                </div>
+              </div>
+
+              <div class="signer-card">
+                <div class="signer-card-header">
+                  <h4>Signatário 2 (Diretoria)</h4>
+                  <span class="signer-badge right">Lado Direito</span>
+                </div>
+                <div class="form-group">
+                  <label for="inputAss2Nome">Nome Completo</label>
+                  <input type="text" id="inputAss2Nome" class="form-input" value="Diretoria Acadêmica">
+                </div>
+                <div class="form-group">
+                  <label for="inputAss2Cargo">Cargo ou Função</label>
+                  <input type="text" id="inputAss2Cargo" class="form-input" value="Direção Geral" placeholder="Ex: Diretor(a) Geral">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-check">
+              <input type="checkbox" id="checkCodigoAutenticacao" checked>
+              <label for="checkCodigoAutenticacao">Incluir nota de registro e autenticidade no rodapé</label>
+            </div>
+          </div>
+{% endraw %}

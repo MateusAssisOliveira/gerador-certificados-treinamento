@@ -1,0 +1,48 @@
+{% raw %}
+<header class="navbar">
+    <div class="nav-brand">
+      <div class="brand-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="svg-icon">
+          <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+          <path d="M2 17l10 5 10-5"></path>
+          <path d="M2 12l10 5 10-5"></path>
+        </svg>
+      </div>
+      <div>
+        <h1 class="brand-title">CertificaFlow</h1>
+        <span class="brand-subtitle">Seu certificado, do modelo à entrega</span>
+      </div>
+    </div>
+
+    <!-- Status do Sistema com Ícones Vetoriais -->
+    <div class="nav-status">
+      <div class="status-badge status-badge-save" id="navSaveIndicator" title="Suas alterações de texto e estrutura são salvas automaticamente">
+        <span class="save-status-dot"></span>
+        <span id="navSaveStatusText">Salvo</span>
+      </div>
+    </div>
+
+    <!-- Ações e Seletor de Tema (Dual-Theming SKILL.md) -->
+    <div class="nav-actions">
+      <!-- Botão de Alternância de Tema Claro / Escuro -->
+      <button type="button" class="btn btn-theme-switch" id="btnToggleTheme" title="Alternar entre Modo Claro Executivo e Modo Escuro">
+        <svg class="theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <svg class="theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+        <span class="theme-text-label" id="themeSwitchText">Modo Claro</span>
+      </button>
+
+      </div>
+  </header>
+{% endraw %}

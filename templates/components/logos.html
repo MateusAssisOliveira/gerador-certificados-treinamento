@@ -1,0 +1,87 @@
+{% raw %}
+<details class="workspace-details"><summary>Logotipos das empresas · Opcional</summary><div class="details-content">
+<div class="logos-module">
+              <div class="module-header">
+                <div class="module-title-box">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="section-icon">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                    <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                    <polyline points="21 15 16 10 5 21"></polyline>
+                  </svg>
+                  <span class="module-title">Logotipos do Cabeçalho</span>
+                </div>
+                <span class="module-hint">Opcional (Dimensões Estabilizadas)</span>
+              </div>
+
+              <div class="logos-grid">
+                <!-- Card Logo Prestadora (Lado Esquerdo) -->
+                <div class="logo-box" id="cardLogoPrestadora">
+                  <div class="logo-box-head">
+                    <span class="logo-box-label">Empresa Prestadora</span>
+                    <span class="side-pill left">Lado Esquerdo</span>
+                  </div>
+                  <div class="logo-viewport-drop" id="dropzoneLogoPrestadora" title="Clique ou arraste uma imagem aqui">
+                    <div class="logo-empty" id="phLogoPrestadora">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="upload-ico">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="17 8 12 3 7 8"></polyline>
+                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                      </svg>
+                      <span class="upload-txt">Clique para carregar</span>
+                    </div>
+                    <img id="imgPreviewLogoPrestadora" class="logo-render-preview" style="display:none;" alt="Logo Prestadora">
+                    <input type="file" id="fileLogoPrestadora" accept="image/*" hidden>
+                  </div>
+                  <div class="logo-box-toolbar">
+                    <button type="button" class="btn-micro" id="btnUploadLogoPrestadora" title="Carregar imagem do seu computador">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="micro-icon"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                      <span>Selecionar</span>
+                    </button>
+                    <button type="button" class="btn-micro" id="btnSampleLogoPrestadora" title="Usar logo de exemplo institucional">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="micro-icon"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                      <span>Exemplo</span>
+                    </button>
+                    <button type="button" class="btn-micro btn-micro-danger is-hidden" id="btnRemoveLogoPrestadora" title="Remover logotipo">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="micro-icon"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                      <span>Remover</span>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Card Logo Contratante (Lado Direito) -->
+                <div class="logo-box" id="cardLogoContratante">
+                  <div class="logo-box-head">
+                    <span class="logo-box-label">Empresa Contratante</span>
+                    <span class="side-pill right">Lado Direito</span>
+                  </div>
+                  <div class="logo-viewport-drop" id="dropzoneLogoContratante" title="Clique ou arraste uma imagem aqui">
+                    <div class="logo-empty" id="phLogoContratante">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="upload-ico">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="17 8 12 3 7 8"></polyline>
+                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                      </svg>
+                      <span class="upload-txt">Clique para carregar</span>
+                    </div>
+                    <img id="imgPreviewLogoContratante" class="logo-render-preview" style="display:none;" alt="Logo Contratante">
+                    <input type="file" id="fileLogoContratante" accept="image/*" hidden>
+                  </div>
+                  <div class="logo-box-toolbar">
+                    <button type="button" class="btn-micro" id="btnUploadLogoContratante" title="Carregar imagem do seu computador">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="micro-icon"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                      <span>Selecionar</span>
+                    </button>
+                    <button type="button" class="btn-micro" id="btnSampleLogoContratante" title="Usar logo de exemplo corporativo parceiro">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="micro-icon"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                      <span>Exemplo</span>
+                    </button>
+                    <button type="button" class="btn-micro btn-micro-danger is-hidden" id="btnRemoveLogoContratante" title="Remover logotipo">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="micro-icon"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                      <span>Remover</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+</div></details>
+{% endraw %}

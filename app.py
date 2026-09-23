@@ -14,16 +14,24 @@ import os
 import re
 import shutil
 import zipfile
+import tempfile
+import uuid
+from contextlib import asynccontextmanager
 from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 import openpyxl
-from fastapi import FastAPI, File, Form, HTTPException, Query, UploadFile
+from fastapi import FastAPI, File, Form, HTTPException, Query, Request, UploadFile
+from fastapi.templating import Jinja2Templates
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, JSONResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
+from storage import Store
+from batches import Batches
+from persistence_api import router as persistence_router
+from visual_model import build_visual_model
 
 import gerador_modelo
 from gerar_certificados import (
@@ -38,11 +46,33 @@ from gerar_certificados import (
     normalizar_nome_arquivo,
 )
 
+DATA_DIR = Path(os.environ.get('CERTIFICAFLOW_DATA_DIR', str(BASE_DIR / 'dados')))
+BATCH_DIR = Path(os.environ.get('CERTIFICAFLOW_BATCH_DIR', str(PASTA_SAIDA / 'lotes')))
+
+
+@asynccontextmanager
+async def lifespan(application):
+    store = Store(DATA_DIR / 'certificaflow.sqlite3')
+    legacy = None if os.environ.get('CERTIFICAFLOW_DATA_DIR') else PASTA_MODELO / 'configuracao_ativa.json'
+    store.initialize(legacy)
+    service = Batches(store, BATCH_DIR)
+    service.start()
+    application.state.store = store
+    application.state.batches = service
+    application.state.backup_folders = [PASTA_MODELO, PASTA_ENTRADA, PASTA_SAIDA]
+    try:
+        yield
+    finally:
+        service.close()
+
+
 app = FastAPI(
+    lifespan=lifespan,
     title="CertificaFlow - Gerador de Certificados",
     description="Estúdio visual para criação e geração em lote de certificados personalizados.",
     version="2.0.0"
 )
+app.include_router(persistence_router)
 
 # Habilita CORS para maior flexibilidade
 app.add_middleware(
@@ -67,6 +97,7 @@ STATIC_DIR.mkdir(parents=True, exist_ok=True)
 TEMPLATES_DIR.mkdir(parents=True, exist_ok=True)
 
 app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
+templates = Jinja2Templates(directory=str(TEMPLATES_DIR))
 
 
 # ---------------------------------------------------------------------------
@@ -110,6 +141,10 @@ class GeracaoLoteRequest(BaseModel):
     origem_dados: str = "arquivo"  # "arquivo" ou "tabela"
     arquivo_planilha: Optional[str] = None
     participantes_tabela: Optional[List[Dict[str, Any]]] = None
+    request_id: str
+    nome_lote: str = "Geração de certificados"
+    config: Optional[Dict[str, Any]] = None
+    usar_modelo_word: bool = False
 
 
 # ---------------------------------------------------------------------------
@@ -181,12 +216,12 @@ def listar_arquivos(pasta: Path, extensoes: tuple) -> List[Dict[str, Any]]:
 # ---------------------------------------------------------------------------
 
 @app.get("/")
-def index():
+def index(request: Request):
     """Retorna a interface visual principal."""
     index_file = TEMPLATES_DIR / "index.html"
     if not index_file.exists():
         raise HTTPException(status_code=404, detail="Template index.html não encontrado.")
-    return FileResponse(index_file)
+    return templates.TemplateResponse(request=request, name="index.html")
 
 
 @app.get("/api/status")
@@ -267,34 +302,6 @@ def salvar_modelo_docx(payload: ModeloSalvarRequest):
         "caminho": str(caminho_arquivo),
         "variaveis_detectadas": variaveis
     }
-
-
-ARQUIVO_CONFIG_PADRAO = PASTA_MODELO / "configuracao_ativa.json"
-
-@app.get("/api/config/carregar")
-def carregar_config_ativa():
-    """Retorna a configuração salva de textos e layout, se existir."""
-    if ARQUIVO_CONFIG_PADRAO.exists():
-        try:
-            import json
-            with open(ARQUIVO_CONFIG_PADRAO, "r", encoding="utf-8") as f:
-                dados = json.load(f)
-            return {"ok": True, "config": dados}
-        except Exception as e:
-            return {"ok": False, "erro": str(e)}
-    return {"ok": False, "mensagem": "Nenhuma configuração salva em disco ainda."}
-
-
-@app.post("/api/config/salvar")
-def salvar_config_ativa(payload: Dict[str, Any]):
-    """Salva no disco (pasta modelo/configuracao_ativa.json) a estrutura de texto e personalizações."""
-    try:
-        import json
-        with open(ARQUIVO_CONFIG_PADRAO, "w", encoding="utf-8") as f:
-            json.dump(payload, f, ensure_ascii=False, indent=2)
-        return {"ok": True, "mensagem": "Configuração salva com sucesso no disco!"}
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
 
 
 @app.post("/api/modelo/upload")
@@ -387,21 +394,19 @@ def download_planilha_exemplo(colunas: str = Query("NOME,CPF,CURSO,DATA,CARGA_HO
     )
 
 
-@app.post("/api/gerar")
-def gerar_certificados_api(payload: GeracaoLoteRequest):
-    """Executa a geração em lote dos certificados (.docx e .pdf)."""
-    caminho_modelo = PASTA_MODELO / payload.modelo_nome
-    if not caminho_modelo.exists():
-        raise HTTPException(status_code=404, detail=f"Modelo '{payload.modelo_nome}' não encontrado.")
-
+@app.post("/api/gerar", status_code=202)
+def gerar_certificados_api(payload: GeracaoLoteRequest, request: Request):
+    """Persiste uma cópia imutável do lote e o coloca na fila local."""
+    try:
+        uuid.UUID(payload.request_id)
+    except ValueError as exc:
+        raise HTTPException(422, 'Identificador de requisição inválido.') from exc
+    with request.app.state.store.connect() as db:
+        existing = db.execute('SELECT id FROM batches WHERE request_id=?', (payload.request_id,)).fetchone()
+    if existing:
+        return {'ok': True, 'lote_id': existing['id']}
     if payload.limpar_saida_antes:
-        for f in PASTA_SAIDA.iterdir():
-            if f.is_file() and f.suffix.lower() in (".docx", ".pdf") and not f.name.startswith("."):
-                try:
-                    f.unlink()
-                except Exception:
-                    pass
-
+        raise HTTPException(400, 'Cada lote tem sua própria pasta. A limpeza não faz parte da geração.')
     # Obtém a lista de participantes
     if payload.origem_dados == "tabela":
         if not payload.participantes_tabela:
@@ -411,6 +416,8 @@ def gerar_certificados_api(payload: GeracaoLoteRequest):
         if not payload.arquivo_planilha:
             raise HTTPException(status_code=400, detail="Nome da planilha não fornecido.")
         caminho_planilha = PASTA_ENTRADA / payload.arquivo_planilha
+        if caminho_planilha.resolve().parent != PASTA_ENTRADA.resolve():
+            raise HTTPException(400, 'Nome de planilha inválido.')
         if not caminho_planilha.exists():
             raise HTTPException(status_code=404, detail=f"Planilha '{payload.arquivo_planilha}' não encontrada.")
         try:
@@ -418,19 +425,27 @@ def gerar_certificados_api(payload: GeracaoLoteRequest):
         except Exception as e:
             raise HTTPException(status_code=400, detail=f"Erro ao ler planilha: {e}")
 
-    # Executa a geração em lote
-    resultado = executar_lote(
-        caminho_modelo=caminho_modelo,
-        participantes=participantes,
-        pasta_saida=PASTA_SAIDA,
-        gerar_pdf=payload.gerar_pdf
-    )
-
-    return {
-        "ok": True,
-        "resumo": resultado,
-        "mensagem": f"{resultado['sucessos']} certificado(s) gerado(s) com sucesso!"
-    }
+    if not participantes:
+        raise HTTPException(400, 'Nenhum participante encontrado.')
+    config = payload.config or {}
+    try:
+        with tempfile.TemporaryDirectory() as temporary:
+            if payload.usar_modelo_word:
+                model = PASTA_MODELO / payload.modelo_nome
+                if model.resolve().parent != PASTA_MODELO.resolve() or not model.is_file():
+                    raise HTTPException(404, 'Modelo Word não encontrado.')
+                model_name = model.name
+            else:
+                if not config.get('front', {}).get('texto_corpo'):
+                    raise HTTPException(422, 'Informe o texto do certificado.')
+                model = build_visual_model(config, temporary)
+                model_name = 'Certificado do editor'
+            batch_id = request.app.state.batches.create(
+                model, participantes, payload.gerar_pdf, config,
+                payload.nome_lote.strip()[:200] or 'Geração de certificados', payload.request_id, model_name)
+        return {'ok': True, 'lote_id': batch_id}
+    except (ValueError, zipfile.BadZipFile) as exc:
+        raise HTTPException(400, str(exc)) from exc
 
 
 @app.get("/api/download/zip")

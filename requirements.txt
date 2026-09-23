@@ -1,5 +1,11 @@
 docxtpl>=0.16
 openpyxl>=3.1
+python-docx
+fastapi
+pydantic
+uvicorn
+python-multipart
+jinja2
 
 # Opcional: conversão automática para PDF usando o Microsoft Word instalado
 # (Windows/macOS). Se não instalado, o script tenta usar o LibreOffice.

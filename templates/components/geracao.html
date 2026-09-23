@@ -1,0 +1,130 @@
+{% raw %}
+<div class="tab-pane" id="tabGeracao">
+          <div class="section-card">
+            <div class="card-header">
+              <h2>Confira, gere e baixe</h2>
+              <p>Confirme as opções e inicie o processamento automático.</p>
+            </div>
+
+            <div class="summary-box">
+              <div class="summary-item">
+                <span class="summary-label">Modelo Word:</span>
+                <span class="summary-val" id="resumoModelo">certificado_base.docx</span>
+              </div>
+              <div class="summary-item">
+                <span class="summary-label">Fonte de Dados:</span>
+                <span class="summary-val" id="resumoFonte">Tabela na Tela</span>
+              </div>
+              <div class="summary-item">
+                <span class="summary-label">Total de Participantes:</span>
+                <span class="summary-val highlight" id="resumoTotal">3 participantes</span>
+              </div>
+              <div class="summary-item">
+                <span class="summary-label">Conversão PDF:</span>
+                <span class="summary-val" id="resumoPdf">Ativa (Word do Windows)</span>
+              </div>
+            </div>
+
+            <div class="generation-options">
+              <label class="option-toggle">
+                <input type="checkbox" id="checkGerarPdf" checked>
+                <span class="toggle-slider"></span>
+                <span class="toggle-text">Gerar também em formato PDF (.pdf)</span>
+              </label>
+
+              <label class="option-toggle">
+                <input type="checkbox" id="checkLimparSaida">
+                <span class="toggle-slider"></span>
+                <span class="toggle-text">Limpar certificados antigos da pasta 'saida' antes de gerar</span>
+              </label>
+            </div>
+
+            <div class="action-zone mt-4">
+              <button class="btn btn-action-large" id="btnIniciarGeracao">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-icon-large">
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                </svg>
+                GERAR TODOS OS CERTIFICADOS
+              </button>
+            </div>
+
+            <!-- Progresso e Resultados -->
+            <div class="progress-container" id="progressContainer" style="display: none;">
+              <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="progressBarFill" style="width: 0%;"></div>
+              </div>
+              <div class="progress-status">
+                <span id="progressStatusText">Processando participantes...</span>
+                <span id="progressPercent">0%</span>
+              </div>
+            </div>
+
+            <!-- Log de Execução -->
+            <details class="workspace-details"><summary>Detalhes do processamento</summary><div class="details-content">
+
+<div class="execution-log" id="executionLog" style="display: none;">
+              <div class="log-header">
+                <span>Console de Processamento</span>
+                <button type="button" class="btn-log-clear" id="btnClearLog">Limpar Log</button>
+              </div>
+              <div class="log-body" id="logBody"></div>
+            </div>
+
+            </div></details><!-- Card de Conclusão e Download -->
+            <div class="success-banner" id="successBanner" style="display: none;">
+              <div class="banner-icon-box">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="banner-svg">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+              </div>
+              <div class="banner-content">
+                <h3 id="bannerTitle">Certificados Gerados com Sucesso!</h3>
+                <p id="bannerDesc">Todos os arquivos foram salvos na pasta 'saida'.</p>
+                <div class="banner-actions">
+                  <button class="btn btn-sm btn-primary" id="btnBaixarZipBanner">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-icon"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    Baixar Todos (.ZIP)
+                  </button>
+                  <button class="btn btn-sm btn-secondary" id="btnAbrirPastaBanner">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-icon"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                    Abrir Pasta no Windows
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          <div class="workspace-downloads"><button class="btn btn-secondary btn-sm" id="btnAbrirPastaNav" title="Abrir pasta de saída no Windows Explorer">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-icon">
+          <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+        </svg>
+        <span>Pasta de Saída</span>
+      </button><button class="btn btn-primary btn-sm" id="btnBaixarZipNav" title="Baixar todos os certificados em arquivo ZIP">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-icon">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        <span>Baixar .ZIP</span>
+      </button></div><details class="workspace-details"><summary>Status do sistema</summary><div class="details-content">
+<div class="workspace-status"><div class="status-badge status-online" id="statusServer">
+        <span class="status-dot"></span>
+        <span>Servidor Online</span>
+      </div><div class="status-badge" id="statusPdf">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="badge-svg">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+        </svg>
+        <span>PDF Word: Verificando...</span>
+      </div><div class="status-badge" id="statusCount">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="badge-svg">
+          <circle cx="12" cy="8" r="7"></circle>
+          <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+        </svg>
+        <span><span id="totalGeradosCount">0</span> Gerados</span>
+      </div></div>
+</div></details></div>
+        </div>
+{% endraw %}

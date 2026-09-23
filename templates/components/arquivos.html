@@ -1,0 +1,100 @@
+{% raw %}
+<details class="workspace-details"><summary>Arquivos Word e configurações salvas</summary><div class="details-content">
+<div class="card-header mt-4">
+              <h2>Salvar / Usar Arquivo Word (.docx)</h2>
+              <p>Gere o modelo oficial para o Word ou use um arquivo existente.</p>
+            </div>
+<div class="button-group">
+              <button class="btn btn-primary" id="btnSalvarModeloDocx">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-icon">
+                  <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                  <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                  <polyline points="7 3 7 8 15 8"></polyline>
+                </svg>
+                Salvar Texto como Modelo Word (.docx)
+              </button>
+
+              <label class="btn btn-secondary file-upload-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-icon">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="17 8 12 3 7 8"></polyline>
+                  <line x1="12" y1="3" x2="12" y2="15"></line>
+                </svg>
+                Carregar meu próprio .DOCX
+                <input type="file" id="fileUploadModelo" accept=".docx" hidden>
+              </label>
+            </div>
+<div class="form-group mt-3">
+              <label for="selectModelosDisponiveis">Modelo ativo para geração:</label>
+              <select id="selectModelosDisponiveis" class="form-select">
+                <option value="certificado_base.docx">certificado_base.docx (Padrão)</option>
+              </select>
+            </div>
+<!-- PERSISTÊNCIA & MODELOS PERSONALIZADOS -->
+<div class="card-header mt-4">
+              <h2>Persistência &amp; Modelos do Usuário</h2>
+              <p>O que você digita na frente e no verso é salvo automaticamente no seu computador. Você também pode exportar modelos para usar quando quiser.</p>
+            </div>
+<div class="persistence-card">
+              <div class="persistence-status-row">
+                <div class="auto-save-pill" id="autoSaveIndicator">
+                  <span class="save-dot"></span>
+                  <span id="saveStatusText">Salvamento contínuo ativo</span>
+                </div>
+                <span class="save-time-hint" id="saveLastTime">Pronto</span>
+              </div>
+
+              <div class="persistence-actions-grid">
+                <button type="button" class="btn btn-secondary btn-sm" id="btnSalvarModeloPreset" title="Salvar configuração atual com um nome">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-icon">
+                    <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                    <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                    <polyline points="7 3 7 8 15 8"></polyline>
+                  </svg>
+                  <span>Salvar Predefinição</span>
+                </button>
+
+                <button type="button" class="btn btn-secondary btn-sm" id="btnExportarConfigJson" title="Baixar arquivo JSON com toda a estrutura">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-icon">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                  </svg>
+                  <span>Exportar (.json)</span>
+                </button>
+
+                <label class="btn btn-secondary btn-sm file-upload-btn" title="Carregar arquivo JSON salvo anteriormente">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-icon">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="17 8 12 3 7 8"></polyline>
+                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                  </svg>
+                  <span>Importar (.json)</span>
+                  <input type="file" id="fileImportConfigJson" accept=".json" hidden>
+                </label>
+
+                <button type="button" class="btn btn-danger-outline btn-sm" id="btnRestaurarPadroes" title="Restaurar textos e estrutura originais de fábrica">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-icon">
+                    <polyline points="1 4 1 10 7 10"></polyline>
+                    <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+                  </svg>
+                  <span>Restaurar Padrões</span>
+                </button>
+              </div>
+
+              <!-- Lista de Predefinições Salvas -->
+              <div class="preset-selector-row mt-3" id="rowPresetsSalvos" style="display: none;">
+                <label for="selectPresetsSalvos">Meus Modelos Salvos:</label>
+                <div class="preset-select-group">
+                  <select id="selectPresetsSalvos" class="form-select form-select-sm">
+                    <!-- Populado dinamicamente -->
+                  </select>
+                  <button type="button" class="btn btn-sm btn-primary" id="btnCarregarPreset">Carregar</button>
+                  <button type="button" class="btn btn-sm btn-danger-outline" id="btnExcluirPreset" title="Excluir este modelo">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-icon"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+</div></details>
+{% endraw %}

@@ -1,0 +1,87 @@
+{% raw %}
+<details class="workspace-details" id="tabVerso"><summary>Verso do certificado <span class="rail-badge-dot" id="badgeVersoDot" title="Verso Ativado" style="position: static; display: inline-block;"></span></summary><div class="details-content">
+<div class="section-card">
+            <div class="card-header">
+              <h2>Parte de Trás do Certificado (Verso)</h2>
+              <p>Configure a ementa do curso, dados de registro cartorial e amparo legal para certificados frente e verso (dupla face).</p>
+            </div>
+
+            <!-- Interruptor Ativar Verso -->
+            <div class="verso-banner-switch">
+              <label class="option-toggle">
+                <input type="checkbox" id="checkHabilitarVerso" checked>
+                <span class="toggle-slider"></span>
+                <span class="toggle-text font-bold">Habilitar Verso do Certificado (2 Páginas / Dupla Face)</span>
+              </label>
+              <p class="switch-explanation">Gera automaticamente a segunda folha com ementa e dados de registro tanto no Word (.docx) quanto no PDF.</p>
+            </div>
+
+            <div id="containerConfigVerso">
+              <div class="form-group mt-3">
+                <label for="inputVersoTitulo">Título do Verso</label>
+                <input type="text" id="inputVersoTitulo" class="form-input" value="CONTEÚDO PROGRAMÁTICO &amp; REGISTRO">
+              </div>
+
+              <div class="form-row">
+                <div class="form-group flex-2">
+                  <label for="selectPresetsEmenta">Presets Rápidos de Ementa</label>
+                  <select id="selectPresetsEmenta" class="form-select">
+                    <option value="tecnologia">Tecnologia, IA &amp; Automação</option>
+                    <option value="gestao">Gestão Ágil &amp; Liderança de Equipes</option>
+                    <option value="seguranca">Segurança do Trabalho &amp; Normas NR</option>
+                    <option value="saude">Saúde, Biossegurança &amp; Primeiros Socorros</option>
+                    <option value="personalizado">Personalizado</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="label-with-counter">
+                  <label for="textareaVersoConteudo">Ementa / Conteúdo Ministrado (1 linha por tópico ou módulo)</label>
+                </div>
+                <textarea id="textareaVersoConteudo" class="form-textarea" rows="6">• Módulo 1: Introdução, Fundamentos e Conceitos Básicos
+• Módulo 2: Metodologias Ágeis, Ferramentas e Boas Práticas
+• Módulo 3: Estudos de Casos Práticos e Aplicações no Mercado
+• Módulo 4: Avaliação Final, Segurança e Ética Profissional</textarea>
+                <span class="input-helper">Suporta tags dinâmicas como <code>{{CURSO}}</code> e <code>{{CARGA_HORARIA}}</code>.</span>
+              </div>
+
+              <div class="card-subheader mt-3">
+                <h3>Registro Oficial &amp; Autenticação</h3>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group flex-1">
+                  <label for="inputVersoLivro">Livro de Registro</label>
+                  <input type="text" id="inputVersoLivro" class="form-input" value="01">
+                </div>
+                <div class="form-group flex-1">
+                  <label for="inputVersoFolha">Folha nº</label>
+                  <input type="text" id="inputVersoFolha" class="form-input" value="45">
+                </div>
+                <div class="form-group flex-1">
+                  <label for="inputVersoRegistro">Nº de Registro</label>
+                  <input type="text" id="inputVersoRegistro" class="form-input" value="REG-{{CPF}}">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="textareaVersoAmparoLegal">Amparo Legal / Portaria</label>
+                <textarea id="textareaVersoAmparoLegal" class="form-textarea" rows="3">Certificado emitido e registrado em estrita conformidade com a Lei Federal de Diretrizes e Bases da Educação Nacional (Lei nº 9.394/96) e Decreto Presidencial nº 5.154/04.</textarea>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group flex-1">
+                  <label for="inputVersoAssNome">Responsável Técnico / Pedagógico (Nome)</label>
+                  <input type="text" id="inputVersoAssNome" class="form-input" value="Coordenação Técnica Pedagógica">
+                </div>
+                <div class="form-group flex-1">
+                  <label for="inputVersoAssCargo">Cargo / Registro Profissional</label>
+                  <input type="text" id="inputVersoAssCargo" class="form-input" value="Responsável Técnico(a) - Registro MEC/CFT">
+                </div>
+              </div>
+            </div>
+
+          </div>
+</div></details>
+{% endraw %}

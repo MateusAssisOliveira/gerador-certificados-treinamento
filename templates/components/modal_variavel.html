@@ -1,0 +1,26 @@
+{% raw %}
+<div class="modal-backdrop" id="modalNovaVariavel">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>Criar Nova Variável Personalizada</h3>
+        <button type="button" class="btn-modal-close" id="btnFecharModalNovaVar" title="Fechar">×</button>
+      </div>
+      <div class="modal-body">
+        <p>Informe o nome da variável que deseja adicionar ao texto e à planilha:</p>
+        <div class="form-group">
+          <label for="inputNomeNovaVar">Nome da Variável (sem acentos nem espaços)</label>
+          <div class="tag-input-wrapper">
+            <span class="tag-prefix">{{</span>
+            <input type="text" id="inputNomeNovaVar" class="form-input" placeholder="EXEMPLO_NOTA">
+            <span class="tag-suffix">}}</span>
+          </div>
+          <span class="input-helper">Exemplos: <code>INSTRUTOR</code>, <code>NOTA_FINAL</code>, <code>CIDADE</code>, <code>PERIODO</code></span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" id="btnCancelarNovaVar">Cancelar</button>
+        <button type="button" class="btn btn-primary" id="btnConfirmarNovaVar">Inserir Variável</button>
+      </div>
+    </div>
+  </div>
+{% endraw %}

@@ -1,0 +1,48 @@
+{% raw %}
+<div class="quick-templates-card" id="quickTemplatesCard">
+              <div class="quick-templates-head">
+                <div class="quick-templates-title">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="section-icon">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                  </svg>
+                  <span>Escolha um modelo</span>
+                </div>
+                <span class="quick-templates-badge">Frente &amp; Verso Prontos</span>
+              </div>
+              <p class="quick-templates-desc">Carregue modelos regulamentares e industriais prontos com 1 clique ou salve seu próprio modelo:</p>
+
+              <div class="quick-templates-controls">
+                <div class="quick-select-wrapper">
+                  <select id="selectModelosPreProntos" class="form-select form-select-sm">
+                    <optgroup label="Segurança do Trabalho &amp; NRs Oficiais">
+                      <option value="nr06_epi" selected>Treinamento de EPIs (NR-06) • Carga 8h</option>
+                      <option value="nr35_altura">Trabalho em Altura (NR-35) • Carga 8h</option>
+                      <option value="nr10_eletrica">Segurança em Eletricidade (NR-10) • Carga 40h</option>
+                      <option value="nr33_confinado">Espaço Confinado (NR-33) • Carga 16h</option>
+                      <option value="nr11_empilhadeira">Operador de Empilhadeira (NR-11) • Carga 16h</option>
+                      <option value="primeiros_socorros">Primeiros Socorros &amp; Suporte Básico • Carga 8h</option>
+                    </optgroup>
+                    <optgroup label="Tecnologia, Gestão &amp; Negócios">
+                      <option value="ia_tecnologia">Inteligência Artificial &amp; Tecnologia • Carga 40h</option>
+                      <option value="gestao_agil">Gestão Ágil, Scrum &amp; Liderança • Carga 30h</option>
+                      <option value="corporativo_padrao">Certificado Corporativo Padrão • Carga 40h</option>
+                    </optgroup>
+                    <optgroup label="Meus Modelos Pré-Prontos Salvos" id="optgroupMeusModelos">
+                      <!-- Modelos personalizados salvos pelo usuário aparecem aqui -->
+                    </optgroup>
+                  </select>
+                  <button type="button" class="btn btn-sm btn-primary" id="btnCarregarModeloPrePronto" title="Aplicar textos e ementa completa deste modelo">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-icon"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <span>Aplicar Modelo</span>
+                  </button>
+                </div>
+                <button type="button" class="btn btn-sm btn-secondary" id="btnSalvarComoPrePronto" title="Salvar o certificado atual como um novo modelo pré-pronto">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-icon"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+                  <span>Salvar como Pré-Pronto</span>
+                </button>
+              </div>
+            </div>
+{% endraw %}

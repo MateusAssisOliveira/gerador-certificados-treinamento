@@ -1,0 +1,112 @@
+{% raw %}
+<div class="certificate-sheet certificate-sheet-verso tema-ouro_azul orientacao-retrato" id="certificateSheetVerso" style="display:none;">
+
+          <!-- Borda Ornamental Dupla -->
+          <div class="cert-outer-border">
+            <div class="cert-inner-border">
+
+              <!-- Cantoneiras Decorativas -->
+              <div class="cert-corner top-left"></div>
+              <div class="cert-corner top-right"></div>
+              <div class="cert-corner bottom-left"></div>
+              <div class="cert-corner bottom-right"></div>
+
+              <!-- Conteúdo Interno do Verso -->
+              <div class="cert-content cert-content-verso">
+
+                <!-- Cabeçalho do Verso -->
+                <div class="cert-verso-header">
+                  <div class="cert-header" id="previewVersoInstituicao">
+                    CENTRO DE DESENVOLVIMENTO &amp; CAPACITAÇÃO PROFISSIONAL
+                  </div>
+                  <h2 class="cert-verso-title" id="previewVersoTitulo">CONTEÚDO PROGRAMÁTICO &amp; REGISTRO</h2>
+                  <div class="cert-divider">
+                    <span class="divider-line"></span>
+                    <span class="divider-symbol">♦  ❖  ♦</span>
+                    <span class="divider-line"></span>
+                  </div>
+                </div>
+
+                <!-- Grid Principal do Verso (2 Colunas Balanceadas) -->
+                <div class="cert-verso-body-grid">
+                  <!-- Coluna 1: Ementa Ministrada -->
+                  <div class="cert-verso-col-ementa">
+                    <div class="cert-verso-section-label">
+                      <span>CONTEÚDO PROGRAMÁTICO MINISTRADO</span>
+                    </div>
+                    <div class="cert-verso-ementa-list" id="previewVersoEmentaList">
+                      <!-- Renderizado dinamicamente pelo JavaScript -->
+                    </div>
+                    <div class="cert-verso-ch-box">
+                      <span class="ch-label">Carga Horária Total Integralizada:</span>
+                      <span class="ch-value" id="previewVersoCargaHoraria">40 horas</span>
+                    </div>
+                  </div>
+
+                  <!-- Coluna 2: Registro, Amparo e Assinatura Técnica -->
+                  <div class="cert-verso-col-registro">
+                    <div class="cert-verso-section-label">
+                      <span>REGISTRO &amp; CONFORMIDADE</span>
+                    </div>
+
+                    <div class="cert-registro-card">
+                      <div class="reg-row">
+                        <span class="reg-lbl">Livro de Registro:</span>
+                        <span class="reg-val" id="previewVersoLivroVal">01</span>
+                      </div>
+                      <div class="reg-row">
+                        <span class="reg-lbl">Folha:</span>
+                        <span class="reg-val" id="previewVersoFolhaVal">45</span>
+                      </div>
+                      <div class="reg-row">
+                        <span class="reg-lbl">Nº de Registro:</span>
+                        <span class="reg-val highlight" id="previewVersoRegVal">REG-123.456.789-00</span>
+                      </div>
+                      <div class="reg-row">
+                        <span class="reg-lbl">Data de Emissão:</span>
+                        <span class="reg-val" id="previewVersoDataVal">11/09/2026</span>
+                      </div>
+                    </div>
+
+                    <div class="cert-verso-amparo" id="previewVersoAmparo">
+                      Certificado emitido e registrado em estrita conformidade com a Lei Federal nº 9.394/96 e Decreto Presidencial nº 5.154/04.
+                    </div>
+
+                    <!-- Selo / QR Code Digital Simulado -->
+                    <div class="cert-verso-seal-box">
+                      <div class="qr-mockup">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <rect x="3" y="3" width="7" height="7"></rect>
+                          <rect x="14" y="3" width="7" height="7"></rect>
+                          <rect x="3" y="14" width="7" height="7"></rect>
+                          <rect x="14" y="14" width="3" height="3"></rect>
+                          <rect x="18" y="18" width="3" height="3"></rect>
+                        </svg>
+                      </div>
+                      <div class="qr-info">
+                        <span class="qr-text-top">Autenticação Digital</span>
+                        <span class="qr-code-hash" id="previewVersoHash">CERT-98A7B6-2026</span>
+                      </div>
+                    </div>
+
+                    <!-- Assinatura Técnica do Verso -->
+                    <div class="cert-verso-signature">
+                      <div class="signature-line"></div>
+                      <div class="signature-name" id="previewVersoAssNome">Coordenação Técnica Pedagógica</div>
+                      <div class="signature-role" id="previewVersoAssCargo">Responsável Técnico(a) - Registro MEC/CFT</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Rodapé do Verso -->
+                <div class="cert-footer cert-verso-footer">
+                  Documento chancelado digitalmente • Válido para todos os efeitos legais em território nacional
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+{% endraw %}

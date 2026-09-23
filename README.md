@@ -4,6 +4,26 @@ Automação em Python com **interface web interativa** e **modo terminal (CLI)**
 
 ---
 
+## Organização da interface
+
+A interface tem três etapas: **Certificado**, **Participantes** e **Gerar e baixar**.
+Na primeira, escolha um modelo e edite o conteúdo. Aparência, logotipos, verso
+e arquivos Word ficam em seções recolhidas. A prévia acompanha a edição.
+
+Os templates são renderizados pelo FastAPI com Jinja2:
+
+- `templates/base.html`: estrutura da página, estilos e scripts.
+- `templates/index.html`: composição da tela.
+- `templates/components/`: cabeçalho, etapas, editor, participantes, geração,
+  prévia, folhas do certificado e modal. As opções do editor têm arquivos próprios.
+- `static/js/workspace.js`: navegação entre as três etapas e ajuste da prévia.
+- `static/js/app.js`: edição, participantes, persistência e comunicação com a API.
+
+Os blocos `{% raw %}` preservam as variáveis literais do certificado, como
+`{{NOME}}` e `{{CPF}}`. Mantenha esses blocos ao editar textos com variáveis
+e preserve os IDs usados pelo JavaScript. Acesse a interface pelo servidor;
+abrir o HTML diretamente não processa os componentes.
+
 ## 🌟 Novidades da Versão 2.0 (Estúdio Visual)
 
 Agora você tem duas formas de usar o sistema:
