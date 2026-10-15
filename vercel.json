@@ -1,0 +1,19 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "builds": [
+    {
+      "src": "apps/api/app/main.py",
+      "use": "@vercel/python",
+      "config": {
+        "maxDuration": 60,
+        "excludeFiles": "{apps/api/tests/**,apps/api/docs/**,**/__pycache__/**}"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "apps/api/app/main.py"
+    }
+  ]
+}
