@@ -1,7 +1,7 @@
 # Benchmark do Motor de Renderização de PDFs (`pdf_renderer`)
 
 > **Fase 3 — Renderer**
-> **Data:** 15/10/2026 11:28:18
+> **Data:** 15/10/2026 11:35:33
 > **Ambiente:** Python 3.14.3 on Windows (AMD64)
 > **Motor:** ReportLab 5.x + PyPDF (Puro, sem browser nem dependências externas)
 
@@ -13,7 +13,7 @@
 |---|:---:|:---:|:---:|
 | **Certificados Gerados** | 100 | 100 | ✅ Aprovado |
 | **Tempo Total** | **0.379 s** | < 5.0 s | ✅ Aprovado |
-| **Taxa de Processamento (Throughput)** | **263.7 cert/s** | >= 20.0 cert/s | ✅ **Excepcional** |
+| **Taxa de Processamento (Throughput)** | **263.6 cert/s** | >= 20.0 cert/s | ✅ **Excepcional** |
 | **Latência Média por Certificado** | **3.79 ms** | < 50.0 ms | ✅ **Ultra-Rápido** |
 | **Tamanho Médio do Arquivo PDF** | **2.62 KB** | < 100 KB | ✅ Compacto |
 
