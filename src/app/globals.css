@@ -2,13 +2,13 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f6f7f9;
-  --foreground: #172033;
-  --card-bg: #ffffff;
-  --card-border: #e2e6ec;
-  --accent-gold: #2563eb;
-  --accent-blue: #2563eb;
-  --accent-teal: #0f766e;
+  --background: #0f1115;
+  --foreground: #e5e7eb;
+  --card-bg: #171a21;
+  --card-border: #2b303b;
+  --accent-gold: #d6a85f;
+  --accent-blue: #6b8afd;
+  --accent-teal: #4f9f94;
 }
 
 body {
@@ -34,15 +34,15 @@ button, a, input {
 }
 
 .glass-panel {
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
-  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+  background: #171a21;
+  border: 1px solid #2b303b;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
 }
 
 .glass-dropdown {
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
-  box-shadow: 0 16px 32px rgba(15, 23, 42, 0.14);
+  background: #1b1f27;
+  border: 1px solid #343a47;
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.35);
 }
 
 /* Custom sleek scrollbar */
