@@ -1,122 +1,73 @@
-# CertificaFlow • Gerador e Estúdio Visual de Certificados em Lote
+# 🎓 CertificaFlow — SaaS de Certificados de Treinamentos & NRs
 
-Automação em Python com **interface web interativa** e **modo terminal (CLI)** para criação de modelos, personalização de textos, definição de variáveis dinâmicas e geração de certificados individuais em lote (`.docx` e `.pdf`), preservando 100% da formatação original (fontes, molduras, assinaturas, bordas e imagens).
-
----
-
-## Organização da interface
-
-A interface tem três etapas: **Certificado**, **Participantes** e **Gerar e baixar**.
-Na primeira, escolha um modelo e edite o conteúdo. Aparência, logotipos, verso
-e arquivos Word ficam em seções recolhidas. A prévia acompanha a edição.
-
-Os templates são renderizados pelo FastAPI com Jinja2:
-
-- `templates/base.html`: estrutura da página, estilos e scripts.
-- `templates/index.html`: composição da tela.
-- `templates/components/`: cabeçalho, etapas, editor, participantes, geração,
-  prévia, folhas do certificado e modal. As opções do editor têm arquivos próprios.
-- `static/js/workspace.js`: navegação entre as três etapas e ajuste da prévia.
-- `static/js/app.js`: edição, participantes, persistência e comunicação com a API.
-
-Os blocos `{% raw %}` preservam as variáveis literais do certificado, como
-`{{NOME}}` e `{{CPF}}`. Mantenha esses blocos ao editar textos com variáveis
-e preserve os IDs usados pelo JavaScript. Acesse a interface pelo servidor;
-abrir o HTML diretamente não processa os componentes.
-
-## 🌟 Novidades da Versão 2.0 (Estúdio Visual)
-
-Agora você tem duas formas de usar o sistema:
-
-1. **Estúdio Web Interativo (Recomendado):** Uma interface visual completa no navegador para editar textos, clicar em botões para inserir variáveis (`{{NOME}}`, `{{CPF}}`, etc.), ver o certificado pronto ao vivo na tela, gerenciar a lista de participantes e gerar tudo com 1 clique.
-2. **Linha de Comando (CLI Clássico):** Execução direta via terminal para fluxos automatizados em segundo plano.
+> Plataforma moderna para **design visual**, **personalização** e **emissão em lote** de certificados de treinamentos regulamentares (NR-1, NR-20, NR-35, CIPA, SST) e corporativos.
+> **100% Next.js 16 + React 19 + TypeScript + Tailwind CSS** — Pronto para deploy na Vercel com 1 clique.
 
 ---
 
-## 🚀 Como Iniciar
+## ✨ Funcionalidades Principais
 
-### 1. Iniciar a Interface Web (1 Duplo-Clique)
+1. **🎨 Estúdio Visual de Design (`/editor`)**:
+   - Canvas com proporções exatas de papel A4 (Paisagem ou Retrato).
+   - Inserção de textos, logos, assinaturas, molduras clássicas e QR Codes.
+   - Variáveis dinâmicas inteligentes (ex: `{{nome_colaborador}}`, `{{cpf}}`, `{{carga_horaria}}`, `{{data_realizacao}}`).
+   - Pré-visualização realista instantânea e download de PDF de teste.
 
-Dê um duplo clique no arquivo:
-```
-iniciar_app.bat
-```
-*(Ou abra o terminal e digite: `python app.py`)*
+2. **⚡ Emissão em Lote Ultrarrápida (`/lotes`)**:
+   - Upload de planilhas Excel (`.xlsx`) ou CSV com auto-detecção de colunas (*De-Para inteligente*).
+   - Mascaramento de dados e proteção LGPD para CPF (`***.456.789-**`).
+   - Geração de PDFs em alta performance com barra de progresso em tempo real.
+   - Download individual ou empacotamento completo em arquivo ZIP via streaming.
 
-O sistema abrirá automaticamente no seu navegador em:
-👉 **`http://127.0.0.1:8000`**
+3. **🔍 Validação Pública de Autenticidade (`/verificar`)**:
+   - Cada certificado recebe um código exclusivo de segurança.
+   - Tela pública de validação que comprova a veracidade do treinamento sem expor dados sensíveis.
 
-### 2. Executar via Terminal (CLI)
-Se preferir usar o terminal como antes:
+4. **📚 Biblioteca de Modelos (`/`)**:
+   - Modelos prontos e homologados para normas regulamentadoras brasileiras (NRs).
+   - Duplicação, arquivamento e exportação/importação em formato JSON.
+
+---
+
+## 🚀 Como Executar Localmente
+
+### Pré-requisitos
+- Node.js 18+ (ou 20+)
+- npm, yarn ou pnpm
+
+### Instalação & Inicialização
+
 ```bash
-python gerar_certificados.py
+# 1. Instalar dependências
+npm install
+
+# 2. Iniciar servidor de desenvolvimento
+npm run dev
 ```
+
+Acesse [http://localhost:3000](http://localhost:3000) no seu navegador.
 
 ---
 
-## 🎨 Recursos do Estúdio Web
+## 🛠️ Scripts Disponíveis
 
-### ✍️ 1. Editor de Texto com Inserção de Variáveis em 1 Clique
-- Digite livremente o título, subtítulo, nome da instituição e corpo do certificado.
-- **Botões rápidos de tags**: clique em `+ {{NOME}}`, `+ {{CPF}}`, `+ {{CURSO}}`, `+ {{DATA}}`, `+ {{CARGA_HORARIA}}` para inserir a variável exatamente na posição do cursor.
-- **Botão "+ Nova Tag..."**: crie qualquer variável personalizada que quiser (ex.: `{{INSTRUTOR}}`, `{{CIDADE}}`, `{{NOTA}}`). Qualquer palavra dentro de `{{...}}` vira automaticamente uma coluna na planilha!
-
-### 👁️ 2. Pré-visualização ao Vivo (Live Preview)
-- O certificado é desenhado em tempo real ao lado enquanto você digita.
-- **Modo Tags vs Modo Preenchido**: alterne entre ver as marcações `{{TAGS}}` ou ver o certificado preenchido com dados reais simulados de um participante.
-- Suporta impressão ou salvamento em PDF direto pelo navegador (`Ctrl+P` ou botão *Imprimir*).
-
-### 🎨 3. Temas & Estilos Visuais
-- **Ouro Real & Azul Marinho**: Elegante corporativo com molduras douradas.
-- **Verde Esmeralda Nobre**: Acadêmico e institucional.
-- **Clássico Minimalista**: Preto, branco e cinza moderno.
-- **Rubi Imperial & Dourado**: Solene e caloroso.
-- Alternância entre orientação **Paisagem (Landscape)** e **Retrato (Portrait)**.
-- Botão para **salvar o texto e estilo como arquivo `.docx` oficial** na pasta `modelo/`.
-- Suporte a upload do seu próprio `.docx` criado no Word.
-
-### 👥 4. Gestão de Participantes
-- **Tabela Direta na Tela**: Adicione, edite ou remova participantes diretamente no navegador sem precisar abrir o Excel.
-- **Botão "⚡ Preencher 3 Exemplos"**: Preenche participantes de teste instantaneamente para você testar a geração em 1 segundo.
-- **Importar Planilha Excel (`.xlsx`, `.csv`)**: Arraste e solte sua planilha; o sistema lê as colunas e dados automaticamente.
-- **Botão "📥 Baixar Excel Modelo"**: Gera e baixa uma planilha Excel já com as colunas certinhas das variáveis usadas no seu texto.
-
-### ⚡ 5. Geração em Lote e Download
-- Gera todos os certificados em `.docx` e converte automaticamente para `.pdf` usando o Microsoft Word do Windows.
-- Console de log e barra de progresso em tempo real.
-- Botão para **Baixar Todos em .ZIP** e **Abrir Pasta de Saída** no Windows Explorer.
+- `npm run dev`: Inicia o servidor de desenvolvimento com Turbopack.
+- `npm run build`: Compila e gera o build de produção otimizado.
+- `npm run start`: Inicia o servidor em modo de produção.
+- `npm run lint`: Executa a verificação estática de código com ESLint.
 
 ---
 
-## 📁 Estrutura de Pastas
+## ☁️ Deploy na Vercel
 
-```
-certificados/
-├── app.py                      <- Servidor web local (FastAPI)
-├── gerador_modelo.py           <- Criação programática de modelos Word e planilhas
-├── gerar_certificados.py       <- Motor de geração em lote (Web & CLI)
-├── iniciar_app.bat             <- Atalho de 1 clique para iniciar no Windows
-├── requirements.txt            <- Dependências do projeto
-├── README.md                   <- Documentação completa
-├── templates/
-│   └── index.html              <- Interface do Estúdio Web
-├── static/
-│   ├── css/style.css           <- Design visual do estúdio e folha de certificado
-│   └── js/app.js               <- Lógica reativa da aplicação
-├── modelo/                     <- Onde ficam os modelos Word (.docx)
-│   └── certificado_base.docx   <- Modelo inicial pré-configurado
-├── entrada/                    <- Onde ficam as planilhas de participantes (.xlsx)
-│   └── participantes_exemplo.xlsx <- Planilha de teste pré-configurada
-└── saida/                      <- Onde os certificados gerados são salvos (.docx e .pdf)
-```
+O projeto foi estruturado para ser implantado na **Vercel** de forma direta, sem necessidade de servidores dedicados ou containers Docker:
+
+1. Conecte o repositório GitHub à [Vercel](https://vercel.com).
+2. O framework preset será detectado automaticamente como **Next.js**.
+3. Clique em **Deploy**.
 
 ---
 
-## 📦 Dependências
+## 📄 Licença
 
-As bibliotecas necessárias já foram instaladas no seu ambiente Python:
-- `docxtpl` — Preenchimento inteligente do documento Word mantendo formatação
-- `python-docx` — Criação e manipulação de arquivos Word
-- `openpyxl` — Leitura e geração de planilhas Excel
-- `docx2pdf` — Conversão em lote para PDF usando o Microsoft Word
-- `fastapi` e `uvicorn` — Servidor web local
+Distribuído sob licença proprietária/MIT corporativa.
