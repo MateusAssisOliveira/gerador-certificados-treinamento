@@ -2,13 +2,13 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0B0F17;
-  --foreground: #F8FAFC;
-  --card-bg: rgba(17, 24, 39, 0.85);
-  --card-border: rgba(255, 255, 255, 0.08);
-  --accent-gold: #D4AF37;
-  --accent-blue: #3B82F6;
-  --accent-teal: #0D9488;
+  --background: #0f1115;
+  --foreground: #e5e7eb;
+  --card-bg: #171a21;
+  --card-border: #2b303b;
+  --accent-gold: #d6a85f;
+  --accent-blue: #6b8afd;
+  --accent-teal: #4f9f94;
 }
 
 body {
@@ -18,27 +18,31 @@ body {
   overflow-x: hidden;
 }
 
-/* Subtle dot grid for studio background */
+button, a, input {
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  background: #dbeafe;
+  color: #172033;
+}
+
 .studio-canvas-bg {
-  background-color: #0d121c;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-color: #111827;
+  background-image: radial-gradient(rgba(148, 163, 184, 0.18) 1px, transparent 1px);
   background-size: 20px 20px;
 }
 
-/* Glassmorphism panels */
 .glass-panel {
-  background: rgba(15, 23, 42, 0.75);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #171a21;
+  border: 1px solid #2b303b;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
 }
 
 .glass-dropdown {
-  background: rgba(15, 23, 42, 0.95);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
+  background: #1b1f27;
+  border: 1px solid #343a47;
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.35);
 }
 
 /* Custom sleek scrollbar */

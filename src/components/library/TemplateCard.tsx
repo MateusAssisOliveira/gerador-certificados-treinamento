@@ -79,18 +79,18 @@ export const TemplateCard: React.FC<TemplateCardProps> = ({
   };
 
   return (
-    <div className="group relative rounded-2xl border border-white/10 bg-slate-900/60 hover:bg-slate-900/90 backdrop-blur-md overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-black/60 hover:border-amber-500/30 flex flex-col">
+    <div className="group relative rounded-lg border border-slate-200 bg-white overflow-hidden transition-all duration-200 hover:shadow-lg hover:shadow-slate-200/80 hover:border-blue-300 flex flex-col">
       {/* Top badges */}
       <div className="absolute top-3 left-3 right-3 z-10 flex items-center justify-between pointer-events-none">
-        <span className="px-2.5 py-1 rounded-full text-[11px] font-semibold bg-slate-950/80 backdrop-blur-md text-amber-300 border border-amber-500/20 shadow-md">
+        <span className="px-2.5 py-1 rounded-full text-[11px] font-semibold bg-white/80 backdrop-blur-md text-amber-300 border border-blue-600/20 shadow-md">
           {template.category}
         </span>
         <div className="flex items-center gap-1.5">
-          <span className="px-2 py-0.5 rounded-full text-[10px] font-medium bg-slate-950/80 text-slate-300 border border-white/10 uppercase">
+          <span className="px-2 py-0.5 rounded-full text-[10px] font-medium bg-white/80 text-slate-300 border border-white/10 uppercase">
             A4 {template.orientation === 'landscape' ? 'Paisagem' : 'Retrato'}
           </span>
           {template.isArchived && (
-            <span className="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-amber-950/90 text-amber-300 border border-amber-500/40">
+            <span className="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-amber-950/90 text-amber-300 border border-blue-600/40">
               Arquivado
             </span>
           )}
@@ -100,13 +100,13 @@ export const TemplateCard: React.FC<TemplateCardProps> = ({
       {/* Thumbnail clickable area */}
       <div
         onClick={() => onPreview(template)}
-        className="cursor-pointer p-3 pt-11 bg-slate-950/40 border-b border-white/5 relative overflow-hidden flex items-center justify-center min-h-[190px]"
+        className="cursor-pointer p-3 pt-11 bg-slate-50 border-b border-white/5 relative overflow-hidden flex items-center justify-center min-h-[190px]"
       >
         <TemplateThumbnail template={template} />
 
         {/* Hover overlay hint */}
-        <div className="absolute inset-0 bg-slate-950/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-2 backdrop-blur-[2px]">
-          <span className="px-3 py-1.5 rounded-lg bg-amber-400 text-slate-950 font-semibold text-xs flex items-center gap-1.5 shadow-lg transform -translate-y-1 group-hover:translate-y-0 transition-transform duration-300">
+        <div className="absolute inset-0 bg-white/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-2 backdrop-blur-[2px]">
+          <span className="px-3 py-1.5 rounded-lg bg-blue-600 text-slate-950 font-semibold text-xs flex items-center gap-1.5 shadow-lg transform -translate-y-1 group-hover:translate-y-0 transition-transform duration-300">
             <Eye className="w-3.5 h-3.5" />
             Visualizar Prévia
           </span>
@@ -117,7 +117,7 @@ export const TemplateCard: React.FC<TemplateCardProps> = ({
       <div className="p-4 flex-1 flex flex-col justify-between">
         <div>
           <div className="flex items-start justify-between gap-2">
-            <h3 className="font-semibold text-base text-white group-hover:text-amber-400 transition-colors line-clamp-1">
+            <h3 className="font-semibold text-base text-slate-800 group-hover:text-blue-600 transition-colors line-clamp-1">
               {template.name}
             </h3>
 
@@ -128,7 +128,7 @@ export const TemplateCard: React.FC<TemplateCardProps> = ({
                   e.stopPropagation();
                   setMenuOpen(!menuOpen);
                 }}
-                className="p-1 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 transition-colors"
+                className="p-1 rounded-lg text-slate-400 hover:text-slate-800 hover:bg-white/10 transition-colors"
                 title="Mais ações"
               >
                 <MoreVertical className="w-4 h-4" />
@@ -155,9 +155,9 @@ export const TemplateCard: React.FC<TemplateCardProps> = ({
                     <Link
                       href={`/lotes`}
                       onClick={() => setMenuOpen(false)}
-                      className="w-full text-left px-2.5 py-1.5 rounded-lg hover:bg-amber-400/20 text-amber-300 flex items-center gap-2 transition-colors"
+                      className="w-full text-left px-2.5 py-1.5 rounded-lg hover:bg-blue-600/20 text-amber-300 flex items-center gap-2 transition-colors"
                     >
-                      <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                      <Sparkles className="w-3.5 h-3.5 text-blue-600" />
                       Gerar em Lote (Excel)
                     </Link>
                     <button
@@ -167,7 +167,7 @@ export const TemplateCard: React.FC<TemplateCardProps> = ({
                       }}
                       className="w-full text-left px-2.5 py-1.5 rounded-lg hover:bg-white/10 flex items-center gap-2 transition-colors"
                     >
-                      <Copy className="w-3.5 h-3.5 text-amber-400" />
+                      <Copy className="w-3.5 h-3.5 text-blue-600" />
                       Duplicar Modelo
                     </button>
                     <button
@@ -195,7 +195,7 @@ export const TemplateCard: React.FC<TemplateCardProps> = ({
                     >
                       {template.isArchived ? (
                         <>
-                          <ArchiveRestore className="w-3.5 h-3.5 text-amber-400" />
+                          <ArchiveRestore className="w-3.5 h-3.5 text-blue-600" />
                           Desarquivar
                         </>
                       ) : (
@@ -235,7 +235,7 @@ export const TemplateCard: React.FC<TemplateCardProps> = ({
 
           <Link
             href={`/editor?id=${template.id}`}
-            className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-white/10 hover:bg-amber-400 hover:text-slate-950 text-white transition-all duration-200 flex items-center gap-1.5 group-hover:border-amber-400/40 border border-white/10"
+            className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-white/10 hover:bg-blue-600 hover:text-slate-950 text-slate-800 transition-all duration-200 flex items-center gap-1.5 group-hover:border-blue-600/40 border border-white/10"
           >
             <Edit3 className="w-3.5 h-3.5" />
             Editar no Studio

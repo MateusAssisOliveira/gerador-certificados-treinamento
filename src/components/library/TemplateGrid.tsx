@@ -139,24 +139,24 @@ export const TemplateGrid: React.FC<TemplateGridProps> = ({
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-white/10">
         <div>
           <div className="flex items-center gap-2 mb-2">
-            <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-400/10 text-amber-300 border border-amber-400/20">
+            <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-blue-600/10 text-amber-300 border border-blue-600/20">
               SaaS Treinamentos & NRs
             </span>
-            <span className="text-xs text-slate-400">
+            <span className="text-xs text-slate-500">
               {filteredTemplates.length} de {initialTemplates.length} modelos exibidos
             </span>
           </div>
-          <h1 className="text-3xl font-extrabold text-white tracking-tight">
+          <h1 className="text-3xl font-extrabold text-slate-100 tracking-tight">
             Biblioteca de Modelos de Certificados
           </h1>
-          <p className="text-sm text-slate-400 mt-1 max-w-2xl">
+          <p className="text-sm text-slate-500 mt-1 max-w-2xl">
             Crie, personalize e gerencie os layouts visuais da sua organização com campos dinâmicos prontos para emissão em lote.
           </p>
         </div>
 
         {/* Quick Toolbar */}
         <div className="flex items-center gap-3">
-          <label className="px-3 py-2 rounded-xl text-xs font-semibold bg-slate-900 hover:bg-slate-800 border border-white/10 text-slate-200 cursor-pointer flex items-center gap-2 transition-colors">
+          <label className="px-3 py-2 rounded-xl text-xs font-semibold bg-white hover:bg-slate-100 border border-white/10 text-slate-200 cursor-pointer flex items-center gap-2 transition-colors">
             <Upload className="w-3.5 h-3.5 text-blue-400" />
             <span>Importar JSON</span>
             <input type="file" accept=".json" onChange={handleImportJsonFile} className="hidden" />
@@ -164,10 +164,10 @@ export const TemplateGrid: React.FC<TemplateGridProps> = ({
 
           <button
             onClick={handleResetDefaults}
-            className="px-3 py-2 rounded-xl text-xs font-semibold bg-slate-900 hover:bg-slate-800 border border-white/10 text-slate-300 hover:text-white flex items-center gap-2 transition-colors"
+            className="px-3 py-2 rounded-xl text-xs font-semibold bg-white hover:bg-slate-100 border border-white/10 text-slate-300 hover:text-slate-100 flex items-center gap-2 transition-colors"
             title="Recarregar presets oficiais"
           >
-            <RotateCcw className="w-3.5 h-3.5 text-slate-400" />
+            <RotateCcw className="w-3.5 h-3.5 text-slate-500" />
             <span className="hidden sm:inline">Restaurar Presets</span>
           </button>
 
@@ -181,7 +181,7 @@ export const TemplateGrid: React.FC<TemplateGridProps> = ({
 
           <Link
             href="/editor"
-            className="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 shadow-lg shadow-amber-500/25 flex items-center gap-2 transition-all"
+            className="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-gradient-to-r from-blue-600 to-amber-600 hover:from-blue-600 hover:to-blue-600 text-slate-950 shadow-lg shadow-blue-600/25 flex items-center gap-2 transition-all"
           >
             <Plus className="w-4 h-4 stroke-[2.5]" />
             <span>Criar Modelo</span>
@@ -194,18 +194,18 @@ export const TemplateGrid: React.FC<TemplateGridProps> = ({
         <div className="flex flex-col sm:flex-row gap-3 items-center justify-between">
           {/* Search Box */}
           <div className="relative w-full sm:max-w-md">
-            <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+            <Search className="w-4 h-4 text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
             <input
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Buscar por nome, treinamento ou categoria..."
-              className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-900/80 border border-white/10 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/50 transition-all"
+              className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-800/80 border border-white/10 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-blue-600/50 focus:ring-1 focus:ring-blue-600/50 transition-all"
             />
             {search && (
               <button
                 onClick={() => setSearch('')}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400 hover:text-white"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-500 hover:text-slate-100"
               >
                 Limpar
               </button>
@@ -213,13 +213,13 @@ export const TemplateGrid: React.FC<TemplateGridProps> = ({
           </div>
 
           {/* Status Segmented Control */}
-          <div className="flex items-center p-1 rounded-xl bg-slate-900/80 border border-white/10 text-xs">
+          <div className="flex items-center p-1 rounded-xl bg-slate-800/80 border border-white/10 text-xs">
             <button
               onClick={() => setStatusFilter('active')}
               className={`px-3 py-1.5 rounded-lg font-medium transition-colors ${
                 statusFilter === 'active'
-                  ? 'bg-amber-500/20 text-amber-300 font-semibold border border-amber-500/30'
-                  : 'text-slate-400 hover:text-white'
+                  ? 'bg-blue-600/20 text-amber-300 font-semibold border border-blue-600/30'
+                  : 'text-slate-500 hover:text-slate-100'
               }`}
             >
               Ativos
@@ -228,8 +228,8 @@ export const TemplateGrid: React.FC<TemplateGridProps> = ({
               onClick={() => setStatusFilter('archived')}
               className={`px-3 py-1.5 rounded-lg font-medium transition-colors ${
                 statusFilter === 'archived'
-                  ? 'bg-amber-500/20 text-amber-300 font-semibold border border-amber-500/30'
-                  : 'text-slate-400 hover:text-white'
+                  ? 'bg-blue-600/20 text-amber-300 font-semibold border border-blue-600/30'
+                  : 'text-slate-500 hover:text-slate-100'
               }`}
             >
               Arquivados
@@ -238,8 +238,8 @@ export const TemplateGrid: React.FC<TemplateGridProps> = ({
               onClick={() => setStatusFilter('all')}
               className={`px-3 py-1.5 rounded-lg font-medium transition-colors ${
                 statusFilter === 'all'
-                  ? 'bg-amber-500/20 text-amber-300 font-semibold border border-amber-500/30'
-                  : 'text-slate-400 hover:text-white'
+                  ? 'bg-blue-600/20 text-amber-300 font-semibold border border-blue-600/30'
+                  : 'text-slate-500 hover:text-slate-100'
               }`}
             >
               Todos
@@ -253,8 +253,8 @@ export const TemplateGrid: React.FC<TemplateGridProps> = ({
             onClick={() => setSelectedCategory('all')}
             className={`px-3 py-1.5 rounded-lg text-xs whitespace-nowrap transition-colors ${
               selectedCategory === 'all'
-                ? 'bg-white text-slate-950 font-bold shadow'
-                : 'bg-slate-900/60 text-slate-400 hover:text-white hover:bg-slate-900 border border-white/5'
+                ? 'bg-slate-100 text-slate-900 font-bold shadow'
+                : 'bg-slate-800/60 text-slate-500 hover:text-slate-100 hover:bg-white border border-white/5'
             }`}
           >
             Todas as Categorias
@@ -265,8 +265,8 @@ export const TemplateGrid: React.FC<TemplateGridProps> = ({
               onClick={() => setSelectedCategory(cat)}
               className={`px-3 py-1.5 rounded-lg text-xs whitespace-nowrap transition-colors ${
                 selectedCategory === cat
-                  ? 'bg-amber-400 text-slate-950 font-bold shadow'
-                  : 'bg-slate-900/60 text-slate-400 hover:text-white hover:bg-slate-900 border border-white/5'
+                  ? 'bg-blue-600 text-slate-950 font-bold shadow'
+                  : 'bg-slate-800/60 text-slate-500 hover:text-slate-100 hover:bg-white border border-white/5'
               }`}
             >
               {cat}
@@ -295,12 +295,12 @@ export const TemplateGrid: React.FC<TemplateGridProps> = ({
         </div>
       ) : (
         /* Empty State */
-        <div className="text-center py-16 px-4 rounded-2xl border border-dashed border-white/10 bg-slate-900/30">
-          <div className="w-12 h-12 rounded-2xl bg-slate-800 flex items-center justify-center mx-auto mb-4 text-slate-400">
+        <div className="text-center py-16 px-4 rounded-2xl border border-dashed border-white/10 bg-white/30">
+          <div className="w-12 h-12 rounded-2xl bg-slate-100 flex items-center justify-center mx-auto mb-4 text-slate-500">
             <Layers className="w-6 h-6" />
           </div>
-          <h3 className="text-lg font-semibold text-white">Nenhum modelo encontrado</h3>
-          <p className="text-sm text-slate-400 mt-1 max-w-sm mx-auto">
+          <h3 className="text-lg font-semibold text-slate-100">Nenhum modelo encontrado</h3>
+          <p className="text-sm text-slate-500 mt-1 max-w-sm mx-auto">
             {search || selectedCategory !== 'all' || statusFilter !== 'active'
               ? 'Tente ajustar os filtros de busca ou categoria para localizar o modelo desejado.'
               : 'Você ainda não possui modelos salvos. Comece criando seu primeiro certificado ou restaure os presets oficiais.'}
@@ -313,14 +313,14 @@ export const TemplateGrid: React.FC<TemplateGridProps> = ({
                   setSelectedCategory('all');
                   setStatusFilter('active');
                 }}
-                className="px-4 py-2 rounded-xl text-xs font-semibold bg-slate-800 text-white hover:bg-slate-700 transition-colors"
+                className="px-4 py-2 rounded-xl text-xs font-semibold bg-slate-100 text-slate-100 hover:bg-slate-700 transition-colors"
               >
                 Limpar Filtros
               </button>
             )}
             <Link
               href="/editor"
-              className="px-4 py-2 rounded-xl text-xs font-semibold bg-amber-400 text-slate-950 hover:bg-amber-300 transition-colors flex items-center gap-2"
+              className="px-4 py-2 rounded-xl text-xs font-semibold bg-blue-600 text-slate-950 hover:bg-amber-300 transition-colors flex items-center gap-2"
             >
               <Plus className="w-4 h-4" />
               Criar Novo Modelo
@@ -333,8 +333,8 @@ export const TemplateGrid: React.FC<TemplateGridProps> = ({
       {duplicateTarget && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in">
           <div className="w-full max-w-md rounded-2xl glass-dropdown p-6 border border-white/10 shadow-2xl">
-            <h3 className="text-lg font-bold text-white mb-1">Duplicar Modelo</h3>
-            <p className="text-xs text-slate-400 mb-4">
+            <h3 className="text-lg font-bold text-slate-100 mb-1">Duplicar Modelo</h3>
+            <p className="text-xs text-slate-500 mb-4">
               Crie uma cópia independente de <strong>&ldquo;{duplicateTarget.name}&rdquo;</strong> para personalizar.
             </p>
             <div className="space-y-3">
@@ -343,7 +343,7 @@ export const TemplateGrid: React.FC<TemplateGridProps> = ({
                 type="text"
                 value={duplicateName}
                 onChange={(e) => setDuplicateName(e.target.value)}
-                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-white/10 text-sm text-white focus:outline-none focus:border-amber-400"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-white/10 text-sm text-slate-100 focus:outline-none focus:border-blue-600"
                 placeholder="Ex: NR-20 Atualização Anual..."
                 autoFocus
               />
@@ -351,13 +351,13 @@ export const TemplateGrid: React.FC<TemplateGridProps> = ({
             <div className="mt-6 flex items-center justify-end gap-3">
               <button
                 onClick={() => setDuplicateTarget(null)}
-                className="px-4 py-2 rounded-xl text-xs font-semibold text-slate-400 hover:text-white hover:bg-white/5 transition-colors"
+                className="px-4 py-2 rounded-xl text-xs font-semibold text-slate-500 hover:text-slate-100 hover:bg-white/5 transition-colors"
               >
                 Cancelar
               </button>
               <button
                 onClick={handleDuplicateConfirm}
-                className="px-4 py-2 rounded-xl text-xs font-semibold bg-amber-400 text-slate-950 hover:bg-amber-300 transition-colors"
+                className="px-4 py-2 rounded-xl text-xs font-semibold bg-blue-600 text-slate-950 hover:bg-amber-300 transition-colors"
               >
                 Confirmar e Duplicar
               </button>
@@ -373,20 +373,20 @@ export const TemplateGrid: React.FC<TemplateGridProps> = ({
             <div className="w-10 h-10 rounded-xl bg-rose-500/20 text-rose-400 flex items-center justify-center mb-3">
               <AlertCircle className="w-5 h-5" />
             </div>
-            <h3 className="text-lg font-bold text-white mb-1">Excluir Modelo?</h3>
-            <p className="text-xs text-slate-400 mb-6 leading-relaxed">
+            <h3 className="text-lg font-bold text-slate-100 mb-1">Excluir Modelo?</h3>
+            <p className="text-xs text-slate-500 mb-6 leading-relaxed">
               Tem certeza que deseja excluir o modelo <strong>&ldquo;{deleteTarget.name}&rdquo;</strong>? Esta ação removerá a configuração do certificado da biblioteca da sua organização.
             </p>
             <div className="flex items-center justify-end gap-3">
               <button
                 onClick={() => setDeleteTarget(null)}
-                className="px-4 py-2 rounded-xl text-xs font-semibold text-slate-400 hover:text-white hover:bg-white/5 transition-colors"
+                className="px-4 py-2 rounded-xl text-xs font-semibold text-slate-500 hover:text-slate-100 hover:bg-white/5 transition-colors"
               >
                 Cancelar
               </button>
               <button
                 onClick={handleDeleteConfirm}
-                className="px-4 py-2 rounded-xl text-xs font-semibold bg-rose-600 hover:bg-rose-500 text-white transition-colors"
+                className="px-4 py-2 rounded-xl text-xs font-semibold bg-rose-600 hover:bg-rose-500 text-slate-100 transition-colors"
               >
                 Sim, Excluir Modelo
               </button>
