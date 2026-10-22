@@ -79,7 +79,7 @@ export const TemplateCard: React.FC<TemplateCardProps> = ({
   };
 
   return (
-    <div className="group relative rounded-2xl border border-white/10 bg-slate-900/60 hover:bg-slate-900/90 backdrop-blur-md overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-black/60 hover:border-amber-500/30 flex flex-col">
+    <div className="group relative rounded-xl border border-white/10 bg-slate-900 overflow-hidden transition-all duration-200 hover:shadow-xl hover:shadow-black/30 hover:border-amber-500/40 flex flex-col">
       {/* Top badges */}
       <div className="absolute top-3 left-3 right-3 z-10 flex items-center justify-between pointer-events-none">
         <span className="px-2.5 py-1 rounded-full text-[11px] font-semibold bg-slate-950/80 backdrop-blur-md text-amber-300 border border-amber-500/20 shadow-md">
