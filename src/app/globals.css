@@ -2,13 +2,13 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0f172a;
-  --foreground: #f8fafc;
-  --card-bg: #172033;
-  --card-border: #293548;
-  --accent-gold: #d4a72c;
-  --accent-blue: #3b82f6;
-  --accent-teal: #0d9488;
+  --background: #f6f7f9;
+  --foreground: #172033;
+  --card-bg: #ffffff;
+  --card-border: #e2e6ec;
+  --accent-gold: #2563eb;
+  --accent-blue: #2563eb;
+  --accent-teal: #0f766e;
 }
 
 body {
@@ -16,6 +16,15 @@ body {
   color: var(--foreground);
   font-family: 'Inter', sans-serif;
   overflow-x: hidden;
+}
+
+button, a, input {
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  background: #dbeafe;
+  color: #172033;
 }
 
 .studio-canvas-bg {
